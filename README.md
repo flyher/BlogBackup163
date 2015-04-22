@@ -14,9 +14,7 @@ screenshot
 
 build by .NET4.5
 
-Win7 x64
-
-[下载地址](file/BlogBackup163.zip)
+Win7 x64  [下载地址](file/BlogBackup163.zip)
 
 
 
