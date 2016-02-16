@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Flyher.Road">
-      <HintPath>..\..\..\C#project\dll库\Clregex优化版\20150226ClRegex 优化版(4.0) for lit\bin\Debug\Flyher.Road.dll</HintPath>
+      <HintPath>..\..\20150226ClRegex 优化版(4.0) for lit\bin\Debug\Flyher.Road.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\..\C#project\dll库\Clregex优化版\20150226ClRegex 优化版(4.0) for lit\bin\Debug\HtmlAgilityPack.dll</HintPath>
+      <HintPath>..\..\20150226ClRegex 优化版(4.0) for lit\bin\Debug\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

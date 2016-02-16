@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rtxtLog.Text" xml:space="preserve">
+    <value>1.输入用户名，点击打开(页面会打开网易博客的登录页面)，输入自己的信息登录(代码开源，该程序不经过任何第三方服务器).
+2.登录成功后，点击"获取登录状态";
+3.获取成功之后，点击执行备份。会自动在程序目录下新建一个blog文件夹执行备份。
+4.备份博文图片。
+详细帮助信息请访问：http://blog.99diary.com/2015/04/22/%E7%BD%91%E6%98%93%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7/</value>
+  </data>
 </root>

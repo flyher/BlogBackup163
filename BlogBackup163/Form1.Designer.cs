@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.rtxtLog = new System.Windows.Forms.RichTextBox();
             this.btnExquery = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
@@ -35,6 +36,7 @@
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnGetCookie = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnBackBlogImg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtxtLog
@@ -44,8 +46,7 @@
             this.rtxtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
             this.rtxtLog.Size = new System.Drawing.Size(199, 360);
             this.rtxtLog.TabIndex = 1;
-            this.rtxtLog.Text = "1.输入用户名，点击打开(页面会打开网易博客的登录页面)，输入自己的信息登录(代码开源，该程序不经过任何第三方服务器).\n2.登录成功后，点击\"获取登录状态\";\n" +
-    "3.获取成功之后，点击执行备份。会自动在程序目录下新建一个blog文件夹执行备份。";
+            this.rtxtLog.Text = resources.GetString("rtxtLog.Text");
             // 
             // btnExquery
             // 
@@ -101,11 +102,22 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "用户名:";
             // 
+            // btnBackBlogImg
+            // 
+            this.btnBackBlogImg.Location = new System.Drawing.Point(446, 250);
+            this.btnBackBlogImg.Name = "btnBackBlogImg";
+            this.btnBackBlogImg.Size = new System.Drawing.Size(100, 23);
+            this.btnBackBlogImg.TabIndex = 9;
+            this.btnBackBlogImg.Text = "备份图片";
+            this.btnBackBlogImg.UseVisualStyleBackColor = true;
+            this.btnBackBlogImg.Click += new System.EventHandler(this.btnBackBlogImg_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 384);
+            this.Controls.Add(this.btnBackBlogImg);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGetCookie);
             this.Controls.Add(this.btnOpen);
@@ -116,7 +128,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BlogBackUp163 V0.1";
+            this.Text = "BlogBackUp163";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnGetCookie;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnBackBlogImg;
 
     }
 }

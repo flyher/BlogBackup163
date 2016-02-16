@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flyher.Road.Example;
+using Flyher.Road.Files;
 using HtmlAgilityPack;
 using System.Net;
 using Flyher.Road.Net;
 using System.IO;
 using System.Web;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace BlogBackup163
 {
@@ -28,6 +30,8 @@ namespace BlogBackup163
         CookieContainer myCookieContainer = new CookieContainer();
         ConHttp ch = new ConHttp();
         HtmlPack hp = new HtmlPack();
+        FileControl fc = new FileControl();
+        RegexMatch rm = new RegexMatch();
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
@@ -71,6 +75,28 @@ namespace BlogBackup163
             t1.IsBackground = true;
             t1.Start();
         }
+                   
+        private void btnBackBlogImg_Click(object sender, EventArgs e)
+        {
+            List<string> lst= fc.GetFiles("blog", "*.html", SearchOption.TopDirectoryOnly);
+            int count = lst == null ? 0 : lst.Count;
+
+            Invoke(new Action(() =>
+            {
+                rtxtLog.AppendText("共:" + count.ToString() + "篇博文\n");
+            }));
+            if (count>0)
+            {
+                //ExqueryBlogImg(lst);
+
+                Thread t1 = new Thread(() => { ExqueryBlogImg(lst); });
+                t1.IsBackground = true;
+                t1.Start();
+            }
+            
+        }
+
+        #region 处理博客
         public void Exquery(string userName)
         {
             try
@@ -107,7 +133,7 @@ namespace BlogBackup163
                         string commentCount = bg.ArtCommentCount(hnPage, j);
                         string htmlArt = ch.GetResponseHtml(url, "get", "", "application/x-www-form-urlencoded", "utf-8", myCookieContainer);
 
-                        CreateLogHtmlId("blog",("[" + i.ToString() + "_" + j.ToString() + "]" + "[" + pushTime + "]" + title).Replace(":", "#").Replace("\\", "_").Replace("/", ""), htmlArt);
+                        CreateLogHtmlId("blog", ("[" + i.ToString() + "_" + j.ToString() + "]" + "[" + pushTime + "]" + title).Replace(":", "#").Replace("\\", "_").Replace("/", ""), htmlArt,true);
                         Invoke(new Action(() =>
                         {
                             rtxtLog.AppendText("正在抓取:" + page.ToString() + "(" + i.ToString() + "-" + j.ToString() + ")\n");
@@ -118,25 +144,31 @@ namespace BlogBackup163
             }
             catch (Exception err)
             {
-                CreateLogHtmlId("log","error","[message]"+err.Message.ToString()+"[data]"+err.Data.ToString()+"[source]"+err.Source.ToString());
+                CreateLogHtmlId("log", "error", "[message]" + err.Message.ToString() + "[data]" + err.Data.ToString() + "[source]" + err.Source.ToString(),true);
             }
             Invoke(new Action(() =>
             {
-                rtxtLog.AppendText("备份成功！");
+                rtxtLog.AppendText("备份成功！\n");
             }));
         }
 
         /// <summary>
         /// 保存获取的html源码
         /// </summary>
-        public void CreateLogHtmlId(string path,string id, string json)
+        public void CreateLogHtmlId(string path, string id, string json,bool ishtml)
         {
             if (!Directory.Exists(path))
             {
                 //创建日志文件夹
                 Directory.CreateDirectory(path);
             }
-            path += "\\" + id.ToString() + ".html";
+            if (ishtml)
+            {
+                path += "\\" + id.ToString() + ".html";
+            }
+            else {
+                path += "\\" + id.ToString();
+            }
             if (!System.IO.File.Exists(path))
             {
                 System.IO.FileStream fs = System.IO.File.Create(path);
@@ -153,7 +185,53 @@ namespace BlogBackup163
                     //sw.Write("Exception is NULL");
                 }
             }
+        }
+        #endregion
+
+        #region 处理图片
+        public void ExqueryBlogImg(List<string> lst)
+        {
+            rtxtLog.Focus();
+            for (int i = 0; i < lst.Count; i++)
+            {
+                string path = lst[i];
+
+                StreamReader sr = new StreamReader(path);
+                string[] files = path.Split(Convert.ToChar("\\"));
+                string file = files[files.Length - 1].Replace(".html", "");
+
+                string article = sr.ReadToEnd();
+                Regex r = new Regex("http://img[0-9]{1}.ph.126.net/[^\"]+");
+                List<string> lstPics = rm.GetAims(article, r);
+
+                for (int j = 0; j < lstPics.Count; j++)
+                {
+                    string[] urls = lstPics[j].Split(Convert.ToChar("/"));
+                    string picname = urls[urls.Length - 1];
+                    string filepath = "img/" + file + "/" + picname;
+                    if (!Directory.Exists("img/" + file))
+                    {
+                        Directory.CreateDirectory("img/" + file);
+                    }
+                    //if (!Directory.Exists("img"))
+                    //{
+                    //    Directory.CreateDirectory("img");
+                    //}
+                    try
+                    {
+                        Image img = ch.GetResponseImage(lstPics[j], "image/png");
+                        img.Save(filepath);
+                        rtxtLog.AppendText(filepath + " 成功\n");
+                    }
+                    catch (Exception err)
+                    {
+                        rtxtLog.AppendText(filepath + " 失败\n");
+                    }
+                }
+            }
 
         }
+
+        #endregion
     }
 }

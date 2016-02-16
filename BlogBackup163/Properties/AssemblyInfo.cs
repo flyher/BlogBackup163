@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("BlogBackup163")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("一款备份网易博客的小工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("flyher")]
 [assembly: AssemblyProduct("BlogBackup163")]
-[assembly: AssemblyCopyright("Copyright © flyher 2015")]
+[assembly: AssemblyCopyright("Copyright © flyher 2015-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
