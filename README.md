@@ -15,7 +15,7 @@ screenshot v0.1
 
 build by .NET4.5
 
-Win7 x64  [下载地址](file/BlogBackup163.zip?raw=true)
+Win7 x64  [下载地址](https://github.com/flyher/BlogBackup163/releases)
 
 
 
