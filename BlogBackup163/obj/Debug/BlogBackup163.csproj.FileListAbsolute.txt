@@ -31,3 +31,9 @@ D:\Program Files (x86)\Connect\dropbox\Dropbox\code\BlogBackup163\BlogBackup163\
 D:\Program Files (x86)\Connect\dropbox\Dropbox\code\BlogBackup163\BlogBackup163\bin\Debug\log4net.xml
 D:\Program Files (x86)\Connect\dropbox\Dropbox\code\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.exe
 D:\Program Files (x86)\Connect\dropbox\Dropbox\code\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.pdb
+C:\Users\flyher\Dropbox\code\BlogBackup163\BlogBackup163\bin\Debug\BlogBackup163.exe.config
+C:\Users\flyher\Dropbox\code\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.exe
+C:\Users\flyher\Dropbox\code\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.pdb
+C:\Users\flyher\Dropbox\code\csharp\BlogBackup163\BlogBackup163\bin\Debug\BlogBackup163.exe.config
+C:\Users\flyher\Dropbox\code\csharp\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.exe
+C:\Users\flyher\Dropbox\code\csharp\BlogBackup163\BlogBackup163\obj\Debug\BlogBackup163.pdb
