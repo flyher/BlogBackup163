@@ -22,6 +22,11 @@ screenshot v0.1
 
 Win7 x64  [下载地址](https://github.com/flyher/BlogBackup163/releases)
 
+.NET 4.5库: [微软官方下载地址](https://www.microsoft.com/zh-cn/download/details.aspx?id=30653)
+
+反馈请开Issues或者 在[这篇博客](http://blog.99diary.com/2015/04/22/网易博客备份工具/)下提交
+
+###更新地址
 
 ```text
 v0.2
