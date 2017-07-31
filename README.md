@@ -2,7 +2,7 @@ BlogBackup163
 ==========
 #### A simple tool to backup NetEase(163) blog ,support open blogs, draft box, private blogs, the import image in 163 blogs and etc.. support convert html to markdown.
 
-[Simplified Chinese](READ-CN.md)
+[Simplified Chinese](README-CN.md)
 
 ### todo list
 
