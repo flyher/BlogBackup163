@@ -12,11 +12,17 @@ BlogBackup163
 
 - [ ] 数据优化
 
+- [x] 相册原图备份
+
 ### 截图
+
+screenshot v0.3
+
+![BlogBackup163@v0.2](https://img.99diary.com/project/src/BlogBackup163/Screenshot_01@v0.1_201504222252.png)
 
 screenshot v0.1
 
-![BlogBackup163](/file/logo.png)
+![BlogBackup163@v0.1](https://img.99diary.com/project/src/BlogBackup163/Screenshot_01@v0.1_201504222252.png)
 
 ### 下载地址
 
@@ -29,6 +35,11 @@ Win7 x64  [下载地址](https://github.com/flyher/BlogBackup163/releases)
 ### 更新地址
 
 ```text
+v0.3
+更新日期:2018-08-31
+>1.UI调整
+>2.支持相册原图备份
+
 v0.2
 更新日期：2016-02-16
 >1.支持博文图片引用的备份，目前是分开备份，代码也很凌乱

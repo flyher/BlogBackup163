@@ -14,11 +14,17 @@ BlogBackup163
 
 - [ ] data optimization
 
-### screenshot v0.1
+- [x] backup photos
+
+### screenshot
+
+screenshot v0.3
+
+![BlogBackup163@v0.2](https://img.99diary.com/project/src/BlogBackup163/Screenshot_01@v0.1_201504222252.png)
 
 screenshot v0.1
 
-![BlogBackup163](/file/logo.png)
+![BlogBackup163@v0.1](https://img.99diary.com/project/src/BlogBackup163/Screenshot_01@v0.1_201504222252.png)
 
 ### download
 
@@ -32,6 +38,11 @@ You can open an issue or leave messages in [this blog](http://blog.99diary.com/2
 ### update log
 
 ```text
+v0.3
+update:2018-08-31
+>1.update UI
+>2.support backup photos
+
 v0.2
 update:2016-02-16
 >1.support image backup for blogs (i put the images in other dir)
