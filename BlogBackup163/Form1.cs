@@ -217,21 +217,107 @@ namespace BlogBackup163
                     //{
                     //    Directory.CreateDirectory("img");
                     //}
-                    try
-                    {
-                        Image img = ch.GetResponseImage(lstPics[j], "image/png");
-                        img.Save(filepath);
-                        rtxtLog.AppendText(filepath + " 成功\n");
-                    }
-                    catch (Exception err)
-                    {
-                        rtxtLog.AppendText(filepath + " 失败\n");
-                    }
+                    DownImage(lstPics[j], picname, filepath);
+
+                    //try
+                    //{
+                    //    Image img = ch.GetResponseImage(lstPics[j], "image/png");
+                    //    img.Save(filepath);
+                    //    rtxtLog.AppendText(filepath + " 成功\n");
+                    //}
+                    //catch (Exception err)
+                    //{
+                    //    rtxtLog.AppendText(filepath + " 失败\n");
+                    //}
                 }
             }
 
         }
 
         #endregion
+
+
+        private void btnBackUpPhoto_Click(object sender, EventArgs e)
+        {
+            string dirName = DateTime.Now.ToString("yyyyMMddHHmmss");
+            if (!Directory.Exists("photo/" + dirName))
+            {
+                Directory.CreateDirectory("photo/" + dirName);
+            }
+            string content = "";
+            Invoke(new Action(() =>
+            {
+                content = rtxtPhotoContent.Text;
+                rtxtLog.Focus();
+                btnBackUpPhoto.Enabled = false;
+            }));
+            Thread t1 = new Thread(() => {
+                List<Photo> lstPhotos = GetPhotoUrl(content);
+                lstPhotos.ForEach((photo) => {
+                    string filepath = "photo/" + dirName + "/" + photo.desc + ".jpg";
+                    DownImage(photo.url, photo.desc + ".jpg", filepath);
+                });
+                rtxtLog.AppendText("done\n");
+            });
+            t1.IsBackground = true;
+            t1.Start();
+            Invoke(new Action(() =>
+            {
+                btnBackUpPhoto.Enabled = true;
+            }));
+        }
+
+
+        /// <summary>
+        /// 获取相册照片下载链接与名称
+        /// </summary>
+        /// <returns></returns>
+        public List<Photo> GetPhotoUrl(string content)
+        {
+            Regex rUrl = new Regex(@"ourl:'[0-3]{0,2}[/]\S+.jpg");
+            Regex rDesc = new Regex(@"(?<=desc:').+(?=',t:)");
+            List<string> urls = rm.GetAims(content, rUrl);
+            List<string> descs = rm.GetAims(content, rDesc);
+            List<Photo> lstPhotos = new List<Photo>();
+            for (int i=0;i<urls.Count;i++)
+            {
+                Photo ph = new Photo();
+                string picHost1 = "http://img0.bimg.126.net/";
+                string picHost2 = "http://img1.ph.126.net/";
+                if (urls[i].Contains("photo/"))
+                {
+                    ph.url = picHost1+ urls[i].Substring(8, urls[i].Length - 8);
+                }
+                else
+                {
+                    ph.url=picHost2+ urls[i].Substring(8, urls[i].Length - 8);
+                }
+                
+                ph.desc = descs[i].ToString();
+                lstPhotos.Add(ph);
+            }
+            return lstPhotos;
+        }
+
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="photoName"></param>
+        /// <param name="filePath"></param>
+        public void DownImage(string url,string photoName, string filePath)
+        {
+            try
+            {
+                Image img = ch.GetResponseImage(url, "image/png");
+                img.Save(filePath);
+                rtxtLog.AppendText(photoName + " 成功\n");
+            }
+            catch (Exception err)
+            {
+                rtxtLog.AppendText(photoName + " 失败\n链接:" + url + "\n");
+            }
+        }
+
     }
 }
